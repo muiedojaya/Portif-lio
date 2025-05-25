@@ -216,3 +216,221 @@ nav.nav-bar { /* MUDEI A COR DO NAV E AUMENTEI O TAMANHO DO NAV   */
     color: rgb(0, 0, 0);
     font-family: "Playwrite HU", cursive;
 }
+* { /* SO UM POUQUINHO DE MARGEM  */
+    margin: 5px;
+    padding: 0; /* Corrigido para 0, pois padding: 100 não é válido */
+}
+
+.header { /* COR DA MINHA NAV BAR E DA LETRA E DEIXEI MAIS RESPONSIVA O NOME */
+    background-color: rgb(238, 185, 233);
+    color: rgb(0, 0, 0);
+    padding-inline: 100px;
+}
+
+.nav { /* PRINCIPAL MINHA NAV */
+  display: flex;
+    height: 117px;
+    margin-inline: auto;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; 
+    position: relative; 
+}
+
+@media (max-width: 750px) { /* DEIXA MAIS RESPONSIVO ASSIM PERMTINDO QUE A BARRA DE NAVEGAÇÃO REORGANIZA QUANDO DIMINUI A TELA */
+    .nav {
+        flex-direction: column;
+        align-items: flex-start; 
+        height: auto;
+    }
+
+    .nav-list {
+        position: absolute;
+        top: 8vh;
+        height: 92vh;
+        width: 50vw;
+        background: #a5c;
+        right: 0;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    /* POCISIONA A BARRA QUANDO A TELA FIICA MENOR*/
+    .barra {
+        order: 1; 
+        width: 100%;
+        max-width: none;
+        margin: 10px 0;
+        transition: none; 
+    }
+
+    /* AJUSTE DO BOTÃO DO MENU */
+    .menu-button {
+        margin-left: 0;
+        align-self: flex-end;
+    }
+
+    /* POCISÃO DO MENU E UM TRECO QUE FICA AO REDOR DAORIINHA  */
+    .menu {
+        top: 60px; 
+        right: 0;
+        left: auto;
+        width: 60vw;
+        max-width: 300px;
+        margin-left: 0;
+        position: fixed; 
+        box-shadow: 0 35px 90px #000000;
+        z-index: 1000;
+    }
+
+    /* ESCONDE A BARRA DE PESQUISA QUANDO MENU ESTÁ ABERTO */
+    #menu-toggle:checked ~ .barra {
+        display: none;
+    }
+}
+
+:root { /* CORES QUE QUASE NÃO USEI DAQUI */ 
+    --body-color: #a5c;
+    --text-color: #fff;
+    --side-nav: rgba(0, 0, 0, 0.467);
+    --nav-color: hsl(0, 0%, 1%);
+    --search-bar: #552468;
+    --search-text: #400557;
+}
+
+body { /* COR DE FUNDO */
+    background-color: var(--body-color);
+    color: #000000;
+    font-family: sans-serif;
+}
+
+nav.nav-bar { /* MUDEI A COR DO NAV E AUMENTEI O TAMANHO DO NAV   */
+    position: relative;
+    height: 100%;
+    background-color: var(--nav-color);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.hamburger-menu { /* E PRA DEIXAR O BUTÃO DO MENU SEM O SELOZINHO DE "VERFICAÇÃO" RELEVA A TAG HAMBURGUE QUE FOI UMA TENTATIVA SÓ QUE DESISTI DE USAR */
+    position: relative;
+    align-items: center;
+    display: flex;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-button { /* MUDEI A COR DO BUTÃO QUE ENTRA NO MENU DEIXEI AS BORDAS MAIS ARREDONDADAS E AUMENTEI O TAMANHO DO BUTÃO */
+    background-color: #ffd7ef;
+    color: rgb(0, 0, 0);
+    padding: 10px 30px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: auto; 
+}
+
+.menu { /* MUDEI A COR DA BORDA DO MENU E O TAMANHO A COR DELE E ADICIONEI SOMBRA NO MENU  */
+    display: none;
+    position: absolute; 
+    right: 0; 
+    background-color: #ffd7ef;
+    border: 2px solid #000000;
+    min-width: 200px;
+    box-shadow: 0 35px 90px #000000;
+    z-index: 1;
+    flex-direction: column;
+    top: 100%; 
+    max-width: 100px;
+}
+
+.menu a { /* MUDEI A COR DA FONTE E O TAMANHO DA FONTE */
+    display: block;
+    padding: 10px;
+    color: #000000;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+/* COR QUANDO SELECIONA A OPÇÃO NO MENU  */
+.menu a:hover {
+    background-color: #f0f0f0;
+}
+
+/* MENU RESPONSIVO */
+#menu-toggle:checked + .menu-button + .menu {
+    display: flex; 
+}
+
+.nav { /* MUDEI A FONTE PRA CURSIVA */
+    font-family: "Playwrite HU", cursive;
+}
+
+.imagem { /* AUMENTEI O TAMANHO DA IMAGEM QUE É EUU */
+    width: 75px;
+    height: auto;
+    margin-top: 20px;
+    position: absolute;
+    top: 26px;
+    left: 19px;
+}
+
+.barra { /* BARRA DE PESQUISA AJUSTEI O TAMANHO A POCISÃO E ENTRE OUTROS  */
+    display: flex;
+    align-items: center;
+    background-color: var(--search-bar);
+    border-radius: 50%;    
+    max-width: 400px;
+    position: relative;
+    box-sizing: border-box;
+    transition: background-color 0.5s ease;
+    height: 40px;
+    margin-left: 40px;   
+    justify-content: center;
+}
+
+.BARRA2 { /* E BASICAMENTE A PARTE DA LUPA MUDA LARGURA TAMANHO E TEMPO DE APARECIMENTO E ENTRE OUTRAS COISAS  */
+    border: none;
+    background: none;
+    color: var(--search-text);
+    padding: 0 px;
+    outline: none;
+    font-size: 16px;
+    width: 0;
+    transition: width 0.5s ease;
+    cursor: pointer; 
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.barra:hover .BARRA2,
+.BARRA2:focus {
+    width: 100%;
+}
+
+/* ALGUNS AJUSTES POPRA FICAR RESPONSIVO*/
+@media (max-width: 400px) {
+    .barra {
+        max-width: 90vw;
+    }
+
+    .BARRA2 {
+        max-width: 120px;
+    }
+}
+
+.NOME { /* MUDEI A COR DO NOME E O TAMANHO DA FONTE */
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    font-family: "Playwrite HU", cursive;
+}
