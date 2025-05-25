@@ -1,0 +1,165 @@
+*{ /* SO UM POUQUINHO DE MARGEM  */
+    margin: 5px;
+    padding: 100;
+}
+.header{ /*COR DA MINHA NAV BAR  E DA LETRA E DEIXEI MAIS RESPONSIVA O NOME */
+    background-color: rgb(238, 185, 233);
+    color: rgb(0, 0, 0);
+    padding-inline: 100px;
+}   
+.nav{
+    height: 117px;
+    margin-inline: auto;
+    max-width: 1100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+
+}
+@media (max-width: 750px) { /*DEIXA MAIS RESPONSIVO ASSIM PERMTINDO QUE A BARRA DE NAVEGAÇÃO REOGARNIZA QUANDO DIMINUI A TELA */
+    .nav-list{
+        position: absolute;
+        top: 8vh;
+        height: 92vh;
+        width: 50vw;
+        background: #a5c;
+        right: 0;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+   
+    }
+
+    }
+:root{ /*CORES QUE QUASE NÃO USEI DAQUI*/ 
+    --body-color: #a5c;
+    --text-color: #fff;
+    --side-nav: rgba(0, 0, 0, 0.467);
+    --nav-color: hsl(0, 0%, 1%);
+    --search-bar: #552468;
+    --search-text: #400557;
+}
+body{ /* COR DE FUNDO */
+    background-color: var(--body-color);
+    color: #000000;
+    font-family: sans-serif;
+}
+
+nav.nav-bar{ /* MUDEI A COR DO NAV E AUMENTEI O TAMANHO DO NAV   */
+    position: relative;
+    height: 100%;
+    background-color: var(--nav-color);
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    margin: 0 auto;
+    max-width: 100px;
+    
+}
+     .hamburger-menu {/* E PRA DEIXAR O BUTÃO DO MENU SEM O SELOZINHO DE "VERFICAÇÃO" RELEVA A TAG HAMBURGUE QUE FOI UMA TENTATIVA SÓ QUE DESISTI DE USAR */
+      position: relative;
+      display: inline-block;
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    .menu-button { /* MUDEI A COR DO BUTÃO QUE ENTRA NO MENU DEIXEI AS BORDAS MAIS ARREDONDADAS E AUMENTEI O TAMANHO DO BUTÃO */
+      background-color: #ffd7ef;
+      color: rgb(0, 0, 0);
+      padding: 10px 30px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-left: 410px;
+      left: 20px;
+      position: center;
+    }
+
+    .menu { /* MUDEI A COR DA BORDA DO MENU E O TAMANHO A COR DELE E ADICIONEI SOMBRA NO MENU  */
+      display: none;
+      position: absolute;
+      background-color: #ffd7ef;
+      border: 2px solid #000000;
+      min-width: 200px;
+      box-shadow: 0 35px 90px #000000;
+      z-index: 1;
+      margin-left: 500px;
+      top: 99px;
+    }
+
+    .menu a { /* MUDEI A COR DA FONTE E O TAMANHO DA FONTE */
+      display: block;
+      padding: 10px;
+      color: #000000;
+      text-decoration: none;
+      font-size: 20px;
+    }
+    /*COR QUANDO SELECIONA A OPÇÃO NO MENU  */
+    .menu a:hover {
+      background-color: #f0f0f0;
+    }/* MENUR RESPONSIVOO */
+   #menu-toggle:checked + .menu-button + .menu {
+      display: block;
+    }
+    
+.nav{  /* MUDEI A FONTE PRA CURSIVA */
+  font-family: "Playwrite HU", cursive;
+  font-weight: weight;
+  font-style: normal;
+}
+
+.nav> { /* FONTE TAMBEM */
+  font-family: "Kapakana", cursive;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  
+  
+}
+.imagem { /* AUMENTEI O TAMANHO DA IMAGEM QUE É EUU*/
+    width: 75px;
+    height: auto;
+    margin-top: 20px;
+    position: absolute;
+    top: 26px;
+    left: 19px;
+}
+.barra{/* ARREDONDEI AS BORDA DEIXEI ELA MAIS CENTRALIZADA  */
+    display: flex;
+    align-items: center;
+    background-color: var(--search-bar);
+    border-radius: 50px;
+    padding: 0px;
+    margin-left: 540px; 
+    position: relative;
+}
+.BARRA2
+{ /* TIREI A BORDA E O FUNDO DA PESQUISA E E ADICIONEI COR E TAMANHO DA FONTE  */
+
+    border: none;
+    background: none;
+    color: var(--search-text);
+    padding: 0px;
+    outline: none;
+    font-size: 16px;
+    width: 0;
+
+  }
+.barra:hover  .BARRA2{ /* AUMENTEI O TAMANHO DA PESQUISA QUANDO PASSA O MOUSE, COLOQUEI A MÃOZINHA */
+    width: 190px;
+    transition: width 0.4s;
+    cursor: pointer;
+    position: center;
+}
+.NOME{ /* MUDEI A COR DO NOME E O TAMANHO DA FONTE */
+    font-size: 30px;
+    color: rgb(0, 0, 0);
+    font-family: "Playwrite HU", cursive;
+    font-weight: weight;
+    font-style: normal;
+}
