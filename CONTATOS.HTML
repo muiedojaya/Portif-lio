@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio - Ellen Christina</title>
+
+  <!-- Estilos e scripts -->
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="app.js"></script>
+  <body class="fundo-preto">
+
+  <style>
+  body.fundo-preto {
+  margin: 0;
+  padding: 0;
+  background-color: #000000;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+    .wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 20px;
+    }
+    header h2 {
+      margin: 0;
+      font-size: 28px;
+      color: white;
+    }
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;    
+      
+    }
+    .menu a {
+      color: white;
+      text-decoration: none;
+      margin: 8px;
+      font-weight: bold;
+    }
+    .critter {
+      font-size: 24px;
+      animation: flutuar 4s infinite ease-in-out;
+    }
+    @keyframes flutuar {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0); }
+    }
+    .contato-direto {
+      background-color: #000000;
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 500px;
+      margin-top: 40px;
+      text-align: center;
+      box-shadow:  3PX 3px 3px 3px rgba(204, 203, 203, 0.1);
+    }
+    .contato-direto button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px 0;
+      width: 100%;
+    }
+    .hamburger-menu {
+  position: relative;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  right: -250px; /* Escondido à direita */
+  width: 250px;
+  height: 100%;
+  background-color: #111;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.4s ease-in-out;
+  z-index: 1000;
+}
+
+#menu-toggle:checked + label + .menu {
+  right: 0; /* Quando ativado, aparece na direita */
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  margin: 20px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Cabeçalho com menu -->
+    <header class="nome">
+      <nav class="nav">
+        <h2>Ellen Christina 🤍</h2>
+
+        <div class="hamburger-menu">
+          <input type="checkbox" id="menu-toggle" />
+          <label for="menu-toggle" class="menu-button">Menu</label>
+
+          <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="projetos.html">Projetos</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="contatos.html">Contatos</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Borboletas animadas -->
+    <div class="critter">🦋</div>
+    <div class="critter">🦋</div>
+
+    <!-- Caixa de contato -->
+    <section class="contato-direto">
+      <h2>📬 Entre em contato diretamente</h2>
+      <p>
+        Se você quiser conversar comigo sobre projetos, ideias, colaborações ou tirar dúvidas, estou sempre disponível! Escolha uma das formas abaixo e fale comigo.
+      </p>
+
+      <a href="https://wa.me/5599991432818" target="_blank">
+        <button style="background-color: #779983; color: white;">
+          Fale comigo pelo WhatsApp 💬
+        </button>
+      </a>
+      <a href="mailto:ellen.christina@acad.ifma.edu.br?subject=Contato Profissional&body=Olá, Ellen!">
+        <button style="background-color: #8f8f8f; color: white;">
+          Enviar Email 📧
+        </button>
+      </a>
+    </section>
+  </div>
+</body>
+</html>

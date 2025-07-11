@@ -1,58 +1,410 @@
-* { /* SO UM POUQUINHO DE MARGEM  */
-    margin: 5px;
-    padding: 0; /* Corrigido para 0, pois padding: 100 não é válido */
+/* ==========================================================================
+   Estilos Globais e Reset
+   ========================================================================== */
+* {
+    /* Remove margens e preenchimentos padrão de todos os elementos para controle total */
+    margin: 5px; /* Pequena margem para espaçamento geral */
+    padding: 0;  /* Preenchimento zerado */
 }
 
-.header { /* COR DA MINHA NAV BAR E DA LETRA E DEIXEI MAIS RESPONSIVA O NOME */
-    background-color: rgb(238, 185, 233);
-    color: rgb(0, 0, 0);
-    padding-inline: 100px;
+/* Variáveis CSS para cores e outros valores reutilizáveis */
+:root {
+    --body-color: #d39fcf; /* Cor de fundo principal do corpo */
+    --text-color: #000000; /* Cor padrão do texto */
+    --nav-background-color: rgb(238, 185, 233); /* Cor de fundo da barra de navegação */
+    --menu-button-background: #ffd7ef; /* Cor de fundo do botão do menu */
+    --menu-border-color: #000000; /* Cor da borda do menu */
+    --search-bar-background: #552468; /* Cor de fundo da barra de pesquisa */
+    --search-text-color: #400557; /* Cor do texto da barra de pesquisa */
 }
 
-.nav { /* PRINCIPAL MINHA NAV */
-  display: flex;
-    height: 117px;
-    margin-inline: auto;
-    max-width: 1100px;
-    display: flex;
-    justify-content: space-between;
+/* Estilos para o corpo da página */
+body {
+    background-color: var(--body-color); /* Usa a cor definida na variável */
+    color: var(--text-color); /* Usa a cor definida na variável */
+    font-family: sans-serif; /* Fonte padrão sem serifa */
+}
+
+/* ==========================================================================
+   Estilos do Cabeçalho e Navegação
+   ========================================================================== */
+.nome { /* Estilos para o cabeçalho principal (onde está o nome "Ellen Christina") */
+    background-color: var(--nav-background-color); /* Cor de fundo da nav bar */
+    color: var(--text-color); /* Cor da letra */
+    padding-inline: 100px; /* Preenchimento horizontal */
+}
+
+.nav { /* Estilos para a barra de navegação principal */
+    display: flex; /* Usa flexbox para alinhamento dos itens */
+    height: 117px; /* Altura fixa da navegação */
+    margin-inline: auto; /* Centraliza a navegação horizontalmente */
+    max-width: 1100px; /* Largura máxima da navegação */
+    justify-content: space-between; /* Distribui o espaço entre os itens */
+    align-items: center; /* Alinha os itens verticalmente ao centro */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha em telas menores */
+    position: relative; /* Necessário para posicionamento absoluto de elementos filhos */
+    font-family: "Playwrite HU", cursive; /* Fonte cursiva para a navegação */
+}
+
+.titulo-epico { /* Estilos para o título "Ellen Christina" */
+    font-family: 'Playwrite HU', cursive;
+    font-size: 1.7rem; /* Tamanho da fonte */
+    text-align: center;
+    color: #000;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease; /* Transição suave para efeitos de hover */
+    cursor: pointer;
+    animation: brilho 3s ease-in-out infinite alternate; /* Animação de brilho */
+}
+
+.titulo-epico:hover { /* Efeito ao passar o mouse sobre o título */
+    color: #d63384;
+    transform: scale(1.03); /* Aumenta ligeiramente o tamanho */
+    text-shadow: 1px 1px 4px rgba(214, 51, 132, 0.4), 0 0 6px rgba(214, 51, 132, 0.3);
+}
+
+@keyframes brilho { /* Animação de brilho para o título */
+    0% {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3), 0 0 8px rgba(214, 51, 132, 0.4);
+    }
+}
+
+.imagem { /* Estilos para a imagem de perfil (logo) */
+    width: 74px; /* Largura da imagem */
+    height: auto; /* Altura automática para manter proporção */
+    margin-top: 16px;
+    position: absolute; /* Posicionamento absoluto em relação ao pai (.nav) */
+    top: 0px;
+    left: 19px;
+}
+
+/* ==========================================================================
+   Estilos do Menu Hamburguer e Navegação Responsiva
+   ========================================================================== */
+.hamburger-menu { /* Contêiner do botão do menu hamburguer */
+    position: relative;
     align-items: center;
-    flex-wrap: wrap; 
-    position: relative; 
+    display: flex;
+    justify-content: center;
+    width: 5px; /* Largura pequena para o contêiner do botão */
 }
 
-@media (max-width: 750px) { /* DEIXA MAIS RESPONSIVO ASSIM PERMTINDO QUE A BARRA DE NAVEGAÇÃO REORGANIZA QUANDO DIMINUI A TELA */
+#menu-toggle { /* Checkbox invisível que controla a visibilidade do menu */
+    display: none; /* Esconde o checkbox */
+}
+
+.menu-button { /* Estilos para o botão "Menu" */
+    background-color: var(--menu-button-background); /* Cor de fundo do botão */
+    color: rgb(0, 0, 0); /* Cor do texto do botão */
+    padding: 10px 30px; /* Preenchimento interno */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    border-radius: 5px; /* Bordas arredondadas */
+    margin-left: auto; /* Alinha o botão à direita */
+    box-shadow: #000000 5px 5px 5px; /* Sombra para o botão */
+}
+
+.menu { /* Estilos para o menu suspenso */
+    display: none; /* Esconde o menu por padrão */
+    position: absolute; /* Posicionamento absoluto em relação ao pai (.hamburger-menu) */
+    background-color: var(--menu-button-background); /* Cor de fundo do menu */
+    border: 2px solid var(--menu-border-color); /* Borda do menu */
+    min-width: 200px; /* Largura mínima do menu */
+    box-shadow: 0 35px 90px #000000; /* Sombra do menu */
+    z-index: 1; /* Garante que o menu fique acima de outros elementos */
+    flex-direction: column; /* Itens do menu empilhados verticalmente */
+    top: 70px; /* Posiciona o menu logo abaixo do botão */
+    max-width: 100px; /* Largura máxima do menu */
+}
+
+.menu a { /* Estilos para os links dentro do menu */
+    display: block; /* Cada link ocupa sua própria linha */
+    padding: 10px; /* Preenchimento interno */
+    color: #000000; /* Cor do texto do link */
+    text-decoration: none; /* Remove sublinhado */
+    font-size: 20px; /* Tamanho da fonte */
+}
+
+.menu a:hover { /* Efeito ao passar o mouse sobre os links do menu */
+    background-color: #f0f0f0; /* Cor de fundo ao passar o mouse */
+    color: #d63384; /* Cor do texto ao passar o mouse */
+}
+
+/* Regra para exibir o menu quando o checkbox está marcado (MENU RESPONSIVO) */
+#menu-toggle:checked + .menu-button + .menu {
+    display: flex; /* Exibe o menu como um flex container */
+}
+
+/* ==========================================================================
+   Estilos da Barra de Pesquisa
+   ========================================================================== */
+.barra { /* Estilos para a barra de pesquisa */
+    display: flex; /* Usa flexbox para alinhamento */
+    align-items: center; /* Alinha itens verticalmente ao centro */
+    background-color: var(--search-bar-background); /* Cor de fundo da barra */
+    border-radius: 50%; /* Bordas arredondadas (círculo) */
+    max-width: 400px; /* Largura máxima */
+    position: relative; /* Posicionamento relativo */
+    box-sizing: border-box; /* Inclui padding e border na largura/altura */
+    transition: background-color 0.5s ease; /* Transição suave para cor de fundo */
+    height: 40px; /* Altura da barra */
+    margin-left: 40px; /* Margem à esquerda */
+    justify-content: center; /* Centraliza conteúdo horizontalmente */
+}
+
+.BARRA2 { /* Estilos para o campo de input dentro da barra de pesquisa */
+    border: none; /* Remove borda */
+    background: none; /* Remove fundo */
+    color: var(--search-text-color); /* Cor do texto */
+    padding: 0 px; /* Preenchimento interno */
+    outline: none; /* Remove contorno ao focar */
+    font-size: 16px; /* Tamanho da fonte */
+    width: 0; /* Largura inicial zero (escondido) */
+    transition: width 0.5s ease; /* Transição suave para a largura */
+    cursor: pointer; /* Cursor de ponteiro */
+    justify-content: center; /* Centraliza texto */
+    align-items: center; /* Alinha texto verticalmente */
+    display: flex; /* Usa flexbox */
+}
+
+.barra:hover .BARRA2,
+.BARRA2:focus { /* Efeito ao passar o mouse ou focar no campo de pesquisa */
+    width: 100%; /* Expande a largura para 100% */
+}
+
+/* ==========================================================================
+   Estilos da Seção de Apresentação
+   ========================================================================== */
+.apresentacao {
+    text-align: center; /* Centraliza o texto */
+    margin: 2rem auto; /* Margem superior/inferior e centralização horizontal */
+    max-width: 600px; /* Largura máxima */
+    font-family: 'Playwrite HU', sans-serif; /* Fonte específica */
+}
+
+.botao-destaque {
+    display: inline-block; /* Permite definir largura/altura e margens */
+    margin-top: 1rem; /* Margem superior */
+    padding: 12px 24px; /* Preenchimento interno */
+    background-color: #fff; /* Cor de fundo branca */
+    color: #000; /* Cor do texto preta */
+    border-radius: 30px; /* Bordas bem arredondadas */
+    text-decoration: none; /* Remove sublinhado */
+    font-weight: bold; /* Texto em negrito */
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1); /* Sombra suave */
+    transition: 0.3s ease; /* Transição suave para efeitos de hover */
+}
+
+.botao-destaque:hover { /* Efeito ao passar o mouse sobre o botão */
+    background-color: #f0f0f0; /* Cor de fundo mais clara */
+}
+
+.slogan {
+    text-align: center; /* Centraliza o texto */
+    font-style: italic; /* Texto em itálico */
+    margin-top: 1rem; /* Margem superior */
+    color: #555; /* Cor do texto cinza */
+}
+
+/* ==========================================================================
+   Estilos para Bichinhos Animados (Critters)
+   ========================================================================== */
+.critter { /* Estilos base para todos os bichinhos animados */
+    position: fixed; /* Posição fixa na tela */
+    font-size: 1.2rem; /* Tamanho da fonte (para emojis) */
+    z-index: 1000; /* Garante que fiquem acima de outros elementos */
+    pointer-events: none; /* Não interagem com o mouse */
+    user-select: none; /* Não podem ser selecionados */
+}
+
+/* Animação de borboleta caindo */
+.caindo {
+    animation: climb 5s infinite linear; /* Animação de "escalada" (caindo) */
+    left: 0%; /* Começa na esquerda */
+}
+
+@keyframes climb {
+    0% { 
+        bottom: calc(100vh + 4px); /* Começa fora do topo da tela */
+        transform: rotate(90deg); /* Rotação inicial */
+    }
+    100% { 
+        bottom: -40px; /* Cai até sair por baixo da tela */
+        transform: rotate(1000deg); /* Rotação contínua */
+    }
+}
+
+/* Animação de borboleta "revivendo" (pulando) */
+.revivendo {
+    animation: frogJump 9s infinite linear; /* Animação de "salto de sapo" */
+    top: 95%; /* Perto da parte inferior da tela */
+    animation-delay: 4.9s; /* Atraso para sincronizar com outros bichinhos */
+    left: 100%; /* Começa na direita */
+}
+
+@keyframes frogJump {
+    0% { 
+        left: -40px; 
+        transform: translateY(0px) scaleX(1);
+    }
+    20% { 
+        transform: translateY(-20px) scaleX(1);
+    }
+    30% { 
+        transform: translateY(0px) scaleX(1);
+    }
+    50% { 
+        transform: translateY(-25px) scaleX(1);
+    }
+    60% { 
+        transform: translateY(0px) scaleX(1);
+    }
+    80% { 
+        transform: translateY(-15px) scaleX(1);
+    }
+    100% { 
+        left: calc(100vw + 40px); 
+        transform: translateY(0px) scaleX(1);
+    }
+}
+
+/* Animação de borboleta mini */
+.borboletaMini {
+    font-size: 0.70rem; /* Tamanho menor */
+    position: absolute;
+    top: 30%;
+    animation: vooMini 2s infinite ease-in-out alternate; /* Animação de voo */
+}
+
+@keyframes vooMini {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    20% {
+        transform: translateY(-15px) rotate(8deg);
+    }
+    40% {
+        transform: translateY(10px) rotate(-8deg);
+    }
+    60% {
+        transform: translateY(-12px) rotate(6deg);
+    }
+    80% {
+        transform: translateY(8px) rotate(-6deg);
+    }
+    100% {
+        left: calc(100vw + 50px);
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* ==========================================================================
+   Estilos do Rodapé e Brilho
+   ========================================================================== */
+.brilhoRodape {
+    position: fixed; /* Posição fixa na tela */
+    bottom: 0; /* Alinhado ao fundo */
+    left: 0; /* Alinhado à esquerda */
+    width: 100%; /* Ocupa toda a largura */
+    height: 20px; /* Altura do brilho */
+    background: linear-gradient(to top, 
+        rgba(255, 182, 239, 0.8) 20%, 
+        rgba(247, 2, 194, 0.2) 100%); /* Gradiente de cor */
+    animation: piscandoBarbie 1.5s ease-in-out infinite; /* Animação de piscar */
+    pointer-events: none; /* Não interage com o mouse */
+    z-index: 9999; /* Garante que fique acima de tudo */
+    box-shadow: 0 0 40px 20px rgba(255, 105, 180, 0.2); /* Sombra para o brilho */
+    opacity: 0.8; /* Opacidade */
+    filter: blur(4px); /* Efeito de desfoque */
+}
+
+@keyframes piscandoBarbie { /* Animação de piscar para o brilho do rodapé */
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 100; }
+}
+
+footer {
+    height: 100px; /* Altura do rodapé */
+    display: flex; /* Usa flexbox */
+    justify-content: center; /* Centraliza conteúdo horizontalmente */
+    align-items: center; /* Centraliza conteúdo verticalmente */
+    color: #000000; /* Cor do texto */
+    font-style: italic; /* Texto em itálico */
+}
+
+/* ==========================================================================
+   Estilos de Conteúdo e Seções Específicas
+   ========================================================================== */
+.sobreMim p { /* Estilos para parágrafos na seção "Sobre Mim" */
+    font-size: 1.2rem; /* Tamanho da fonte */
+    line-height: 1.6; /* Espaçamento entre linhas */
+    font-family: cursive, 'Arial Narrow Bold', sans-serif; /* Fontes alternativas */
+    width: 90%; /* Largura de 90% */
+    max-width: 800px; /* Largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    padding: 20px; /* Preenchimento interno */
+    text-align: justify; /* Texto justificado */
+    border: 3px solid #000000; /* Borda estilizada */
+    border-radius: 12px; /* Cantos arredondados */
+    background-color: rgba(255, 255, 255, 0.6); /* Fundo suave */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra leve */
+}
+
+.hobbis { /* Estilos para a seção de hobbies */
+    text-align: center; /* Centraliza o texto */
+    padding: 30px 30px; /* Preenchimento interno */
+    max-width: 1000px; /* Largura máxima */
+    width: 100%; /* Ocupa toda a largura disponível */
+    margin: 0 auto; /* Centraliza horizontalmente */
+    font-family: 'Poppins', sans-serif; /* Fonte específica */
+    color: #333; /* Cor do texto */
+    background: rgba(199, 190, 196, 0.4); /* Fundo delicado */
+    border-radius: 12px; /* Cantos arredondados */
+    box-shadow: 0 0 20px rgb(0, 0, 0); /* Sombra */
+    backdrop-filter: blur(4px); /* Efeito de desfoque no fundo */
+    margin-top: 20px; /* Espaço acima */
+}
+
+.items { /* Estilos para itens (provavelmente imagens ou cards) */
+    height: 340px; /* Altura fixa */
+    width: 340px; /* Largura fixa */
+    border: 5px solid #000000; /* Borda */
+    box-shadow: 5px 5px 5px #000000; /* Sombra */
+    overflow: hidden; /* Esconde conteúdo que transborda */
+    transition: transform 0.3s ease; /* Transição suave para transformações */
+    aspect-ratio: 16 / 9; /* Proporção de aspecto */
+    position: relative; /* Necessário para z-index no hover */
+}
+
+.items img { /* Estilos para imagens dentro de .items */
+    height: 100%; /* Ocupa 100% da altura do pai */
+    object-fit: contain; /* Redimensiona a imagem para caber dentro do contêiner */
+    transition: transform 0.3s ease; /* Transição suave para transformações */
+}
+
+.items:hover { /* Efeito ao passar o mouse sobre os itens */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    z-index: 1; /* Garante que o item em hover fique acima */
+}
+
+/* ==========================================================================
+   Estilos Responsivos Gerais
+   ========================================================================== */
+@media (max-width: 750px) { /* Ajustes para telas com largura máxima de 750px */
     .nav {
-        flex-direction: column;
-        align-items: flex-start; 
-        height: auto;
-    }
-
-    .nav-list {
-        position: absolute;
-        top: 8vh;
-        height: 92vh;
-        width: 50vw;
-        background: #a5c;
-        right: 0;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    /* POCISIONA A BARRA QUANDO A TELA FIICA MENOR*/
-    .barra {
-        order: 1; 
-        width: 100%;
-        max-width: none;
-        margin: 10px 0;
-        transition: none; 
+        flex-direction: column; /* Itens da navegação empilhados verticalmente */
+        align-items: flex-start; /* Alinha itens à esquerda */
+        height: auto; /* Altura automática */
     }
 
     /* AJUSTE DO BOTÃO DO MENU */
     .menu-button {
         margin-left: 0;
-        align-self: flex-end;
+        align-self: flex-end; /* Alinha o botão à direita */
     }
 
     /* POCISÃO DO MENU E UM TRECO QUE FICA AO REDOR DAORIINHA  */
@@ -67,370 +419,34 @@
         box-shadow: 0 35px 90px #000000;
         z-index: 1000;
     }
+}
 
-    /* ESCONDE A BARRA DE PESQUISA QUANDO MENU ESTÁ ABERTO */
-    #menu-toggle:checked ~ .barra {
-        display: none;
+@media (max-width: 768px) { /* Ajustes para telas com largura máxima de 768px */
+    .critter {
+        font-size: 1rem; /* Reduz o tamanho dos bichinhos */
     }
 }
 
-:root { /* CORES QUE QUASE NÃO USEI DAQUI */ 
-    --body-color: #a5c;
-    --text-color: #fff;
-    --side-nav: rgba(0, 0, 0, 0.467);
-    --nav-color: hsl(0, 0%, 1%);
-    --search-bar: #552468;
-    --search-text: #400557;
-}
-
-body { /* COR DE FUNDO */
-    background-color: var(--body-color);
-    color: #000000;
-    font-family: sans-serif;
-}
-
-nav.nav-bar { /* MUDEI A COR DO NAV E AUMENTEI O TAMANHO DO NAV   */
-    position: relative;
-    height: 100%;
-    background-color: var(--nav-color);
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    margin: 0 auto;
-}
-
-.hamburger-menu { /* E PRA DEIXAR O BUTÃO DO MENU SEM O SELOZINHO DE "VERFICAÇÃO" RELEVA A TAG HAMBURGUE QUE FOI UMA TENTATIVA SÓ QUE DESISTI DE USAR */
-    position: relative;
-    align-items: center;
-    display: flex;
-}
-
-#menu-toggle {
-    display: none;
-}
-
-.menu-button { /* MUDEI A COR DO BUTÃO QUE ENTRA NO MENU DEIXEI AS BORDAS MAIS ARREDONDADAS E AUMENTEI O TAMANHO DO BUTÃO */
-    background-color: #ffd7ef;
-    color: rgb(0, 0, 0);
-    padding: 10px 30px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: auto; 
-}
-
-.menu { /* MUDEI A COR DA BORDA DO MENU E O TAMANHO A COR DELE E ADICIONEI SOMBRA NO MENU  */
-    display: none;
-    position: absolute; 
-    right: 0; 
-    background-color: #ffd7ef;
-    border: 2px solid #000000;
-    min-width: 200px;
-    box-shadow: 0 35px 90px #000000;
-    z-index: 1;
-    flex-direction: column;
-    top: 100%; 
-    max-width: 100px;
-}
-
-.menu a { /* MUDEI A COR DA FONTE E O TAMANHO DA FONTE */
-    display: block;
-    padding: 10px;
-    color: #000000;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-/* COR QUANDO SELECIONA A OPÇÃO NO MENU  */
-.menu a:hover {
-    background-color: #f0f0f0;
-}
-
-/* MENU RESPONSIVO */
-#menu-toggle:checked + .menu-button + .menu {
-    display: flex; 
-}
-
-.nav { /* MUDEI A FONTE PRA CURSIVA */
-    font-family: "Playwrite HU", cursive;
-}
-
-.imagem { /* AUMENTEI O TAMANHO DA IMAGEM QUE É EUU */
-    width: 75px;
-    height: auto;
-    margin-top: 20px;
-    position: absolute;
-    top: 26px;
-    left: 19px;
-}
-
-.barra { /* BARRA DE PESQUISA AJUSTEI O TAMANHO A POCISÃO E ENTRE OUTROS  */
-    display: flex;
-    align-items: center;
-    background-color: var(--search-bar);
-    border-radius: 50%;    
-    max-width: 400px;
-    position: relative;
-    box-sizing: border-box;
-    transition: background-color 0.5s ease;
-    height: 40px;
-    margin-left: 40px;   
-    justify-content: center;
-}
-
-.BARRA2 { /* E BASICAMENTE A PARTE DA LUPA MUDA LARGURA TAMANHO E TEMPO DE APARECIMENTO E ENTRE OUTRAS COISAS  */
-    border: none;
-    background: none;
-    color: var(--search-text);
-    padding: 0 px;
-    outline: none;
-    font-size: 16px;
-    width: 0;
-    transition: width 0.5s ease;
-    cursor: pointer; 
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.barra:hover .BARRA2,
-.BARRA2:focus {
-    width: 100%;
-}
-
-/* ALGUNS AJUSTES POPRA FICAR RESPONSIVO*/
-@media (max-width: 400px) {
+@media (max-width: 400px) { /* Ajustes para telas com largura máxima de 400px */
     .barra {
-        max-width: 90vw;
+        max-width: 90vw; /* Largura máxima da barra de pesquisa */
     }
 
     .BARRA2 {
-        max-width: 120px;
+        max-width: 120px; /* Largura máxima do input da barra de pesquisa */
     }
 }
-
-.NOME { /* MUDEI A COR DO NOME E O TAMANHO DA FONTE */
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-    font-family: "Playwrite HU", cursive;
-}
-* { /* SO UM POUQUINHO DE MARGEM  */
-    margin: 5px;
-    padding: 0; /* Corrigido para 0, pois padding: 100 não é válido */
+.projeto-genially {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  color: white;
 }
 
-.header { /* COR DA MINHA NAV BAR E DA LETRA E DEIXEI MAIS RESPONSIVA O NOME */
-    background-color: rgb(238, 185, 233);
-    color: rgb(0, 0, 0);
-    padding-inline: 100px;
-}
-
-.nav { /* PRINCIPAL MINHA NAV */
-  display: flex;
-    height: 117px;
-    margin-inline: auto;
-    max-width: 1100px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; 
-    position: relative; 
-}
-
-@media (max-width: 750px) { /* DEIXA MAIS RESPONSIVO ASSIM PERMTINDO QUE A BARRA DE NAVEGAÇÃO REORGANIZA QUANDO DIMINUI A TELA */
-    .nav {
-        flex-direction: column;
-        align-items: flex-start; 
-        height: auto;
-    }
-
-    .nav-list {
-        position: absolute;
-        top: 8vh;
-        height: 92vh;
-        width: 50vw;
-        background: #a5c;
-        right: 0;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-    }
-
-    /* POCISIONA A BARRA QUANDO A TELA FIICA MENOR*/
-    .barra {
-        order: 1; 
-        width: 100%;
-        max-width: none;
-        margin: 10px 0;
-        transition: none; 
-    }
-
-    /* AJUSTE DO BOTÃO DO MENU */
-    .menu-button {
-        margin-left: 0;
-        align-self: flex-end;
-    }
-
-    /* POCISÃO DO MENU E UM TRECO QUE FICA AO REDOR DAORIINHA  */
-    .menu {
-        top: 60px; 
-        right: 0;
-        left: auto;
-        width: 60vw;
-        max-width: 300px;
-        margin-left: 0;
-        position: fixed; 
-        box-shadow: 0 35px 90px #000000;
-        z-index: 1000;
-    }
-
-    /* ESCONDE A BARRA DE PESQUISA QUANDO MENU ESTÁ ABERTO */
-    #menu-toggle:checked ~ .barra {
-        display: none;
-    }
-}
-
-:root { /* CORES QUE QUASE NÃO USEI DAQUI */ 
-    --body-color: #a5c;
-    --text-color: #fff;
-    --side-nav: rgba(0, 0, 0, 0.467);
-    --nav-color: hsl(0, 0%, 1%);
-    --search-bar: #552468;
-    --search-text: #400557;
-}
-
-body { /* COR DE FUNDO */
-    background-color: var(--body-color);
-    color: #000000;
-    font-family: sans-serif;
-}
-
-nav.nav-bar { /* MUDEI A COR DO NAV E AUMENTEI O TAMANHO DO NAV   */
-    position: relative;
-    height: 100%;
-    background-color: var(--nav-color);
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 30px;
-    margin: 0 auto;
-}
-
-.hamburger-menu { /* E PRA DEIXAR O BUTÃO DO MENU SEM O SELOZINHO DE "VERFICAÇÃO" RELEVA A TAG HAMBURGUE QUE FOI UMA TENTATIVA SÓ QUE DESISTI DE USAR */
-    position: relative;
-    align-items: center;
-    display: flex;
-}
-
-#menu-toggle {
-    display: none;
-}
-
-.menu-button { /* MUDEI A COR DO BUTÃO QUE ENTRA NO MENU DEIXEI AS BORDAS MAIS ARREDONDADAS E AUMENTEI O TAMANHO DO BUTÃO */
-    background-color: #ffd7ef;
-    color: rgb(0, 0, 0);
-    padding: 10px 30px;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-left: auto; 
-}
-
-.menu { /* MUDEI A COR DA BORDA DO MENU E O TAMANHO A COR DELE E ADICIONEI SOMBRA NO MENU  */
-    display: none;
-    position: absolute; 
-    right: 0; 
-    background-color: #ffd7ef;
-    border: 2px solid #000000;
-    min-width: 200px;
-    box-shadow: 0 35px 90px #000000;
-    z-index: 1;
-    flex-direction: column;
-    top: 100%; 
-    max-width: 100px;
-}
-
-.menu a { /* MUDEI A COR DA FONTE E O TAMANHO DA FONTE */
-    display: block;
-    padding: 10px;
-    color: #000000;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-/* COR QUANDO SELECIONA A OPÇÃO NO MENU  */
-.menu a:hover {
-    background-color: #f0f0f0;
-}
-
-/* MENU RESPONSIVO */
-#menu-toggle:checked + .menu-button + .menu {
-    display: flex; 
-}
-
-.nav { /* MUDEI A FONTE PRA CURSIVA */
-    font-family: "Playwrite HU", cursive;
-}
-
-.imagem { /* AUMENTEI O TAMANHO DA IMAGEM QUE É EUU */
-    width: 75px;
-    height: auto;
-    margin-top: 20px;
-    position: absolute;
-    top: 26px;
-    left: 19px;
-}
-
-.barra { /* BARRA DE PESQUISA AJUSTEI O TAMANHO A POCISÃO E ENTRE OUTROS  */
-    display: flex;
-    align-items: center;
-    background-color: var(--search-bar);
-    border-radius: 50%;    
-    max-width: 400px;
-    position: relative;
-    box-sizing: border-box;
-    transition: background-color 0.5s ease;
-    height: 40px;
-    margin-left: 40px;   
-    justify-content: center;
-}
-
-.BARRA2 { /* E BASICAMENTE A PARTE DA LUPA MUDA LARGURA TAMANHO E TEMPO DE APARECIMENTO E ENTRE OUTRAS COISAS  */
-    border: none;
-    background: none;
-    color: var(--search-text);
-    padding: 0 px;
-    outline: none;
-    font-size: 16px;
-    width: 0;
-    transition: width 0.5s ease;
-    cursor: pointer; 
-    justify-content: center;
-    align-items: center;
-    display: flex;
-}
-
-.barra:hover .BARRA2,
-.BARRA2:focus {
-    width: 100%;
-}
-
-/* ALGUNS AJUSTES POPRA FICAR RESPONSIVO*/
-@media (max-width: 400px) {
-    .barra {
-        max-width: 90vw;
-    }
-
-    .BARRA2 {
-        max-width: 120px;
-    }
-}
-
-.NOME { /* MUDEI A COR DO NOME E O TAMANHO DA FONTE */
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-    font-family: "Playwrite HU", cursive;
+.genially-container iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
 }
